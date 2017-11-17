@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:background="@android:color/holo_blue_light"
+    tools:context=".SimpleGuidePageFragment">
+
+    <ImageView
+        android:id="@+id/vImage"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        tools:src="@drawable/ic_check_black_24dp"
+        tools:tint="@android:color/white"/>
+
+    <TextView
+        android:id="@+id/vTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        tools:text="Welcome"
+        tools:textColor="@android:color/white"/>
+
+    <TextView
+        android:id="@+id/vDescriptionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:alpha="0.7"
+        android:lines="3"
+        android:ellipsize="end"
+        android:gravity="center_horizontal"
+        tools:text="Will you be my witness?"
+        tools:textColor="@android:color/white"/>
+
+    <Button
+        android:id="@+id/vButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        tools:text="Start"
+        tools:textColor="@android:color/white"
+        tools:backgroundTint="@android:color/holo_green_light"/>
+
+</LinearLayout>
