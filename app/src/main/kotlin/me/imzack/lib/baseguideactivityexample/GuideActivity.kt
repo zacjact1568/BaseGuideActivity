@@ -21,19 +21,14 @@ class GuideActivity : BaseGuideActivity() {
             SimpleGuidePageFragment.newInstance(
                     R.mipmap.ic_launcher,
                     "Welcome",
-                    Color.WHITE,
-                    "This is a description",
-                    Color.WHITE
+                    "This is a description"
             ),
             SimpleGuidePageFragment.newInstance(
                     R.mipmap.ic_launcher_round,
                     "Enjoy",
-                    Color.WHITE,
                     "Agree following licence to continue",
-                    Color.WHITE,
                     "Agree",
                     Color.BLUE,
-                    Color.WHITE,
                     object : SimpleGuidePageFragment.OnButtonClickListener {
                         override fun onClick(v: View) {
                             Toast.makeText(this@GuideActivity, "You clicked AGREE button", Toast.LENGTH_SHORT).show()
@@ -43,7 +38,7 @@ class GuideActivity : BaseGuideActivity() {
     )
 
     override fun onBackPressedOnce() {
-        Toast.makeText(this@GuideActivity, "Click once again to exit", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Click once again to exit", Toast.LENGTH_SHORT).show()
     }
 
     override fun onBackPressedTwice() {
