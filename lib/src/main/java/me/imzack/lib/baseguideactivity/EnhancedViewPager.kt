@@ -5,9 +5,9 @@ import android.support.v4.view.ViewPager
 import android.util.AttributeSet
 import android.view.MotionEvent
 
-class EnhancedViewPager : ViewPager {
+internal class EnhancedViewPager : ViewPager {
 
-    /** 开启或关闭ViewPager的左右滑动 */
+    /** 开启或关闭 ViewPager 的左右滑动 */
     var scrollingEnabled = true
 
     constructor(context: Context) : super(context)

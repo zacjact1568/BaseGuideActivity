@@ -10,16 +10,16 @@ import kotlinx.android.synthetic.main.activity_base_guide.*
 abstract class BaseGuideActivity : AppCompatActivity() {
 
     // 不能直接初始化，会有警告
-    private val mGuidePagerAdapter by lazy { GuidePagerAdapter(supportFragmentManager, provideFragmentList()) }
+    private val guidePagerAdapter by lazy { GuidePagerAdapter(supportFragmentManager, provideFragmentList()) }
 
-    private var mLastBackKeyPressedTime = 0L
+    private var lastBackKeyPressedTime = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_base_guide)
 
-        vGuidePager.adapter = mGuidePagerAdapter
+        vGuidePager.adapter = guidePagerAdapter
         vGuidePager.scrollingEnabled = false
         vGuidePager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
@@ -27,7 +27,7 @@ abstract class BaseGuideActivity : AppCompatActivity() {
             }
 
             override fun onPageSelected(position: Int) {
-                onPageSelected(position == 0, position == mGuidePagerAdapter.count - 1)
+                onPageSelected(position == 0, position == guidePagerAdapter.count - 1)
             }
 
             override fun onPageScrollStateChanged(state: Int) {
@@ -44,7 +44,7 @@ abstract class BaseGuideActivity : AppCompatActivity() {
 
         vEndButton.setOnClickListener {
             val currentPage = vGuidePager.currentItem
-            if (currentPage != mGuidePagerAdapter.count - 1) {
+            if (currentPage != guidePagerAdapter.count - 1) {
                 //不是最后一页
                 vGuidePager.currentItem = currentPage + 1
             } else {
@@ -53,15 +53,15 @@ abstract class BaseGuideActivity : AppCompatActivity() {
             }
         }
 
-        onPageSelected(true, mGuidePagerAdapter.count == 1)
+        onPageSelected(true, guidePagerAdapter.count == 1)
     }
 
     override fun onBackPressed() {
         val currentTime = System.currentTimeMillis()
-        if (currentTime - mLastBackKeyPressedTime < 1500) {
+        if (currentTime - lastBackKeyPressedTime < 1500) {
             onBackPressedTwice()
         } else {
-            mLastBackKeyPressedTime = currentTime
+            lastBackKeyPressedTime = currentTime
             onBackPressedOnce()
         }
     }

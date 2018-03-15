@@ -11,16 +11,16 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_simple_guide_page.*
 import java.io.Serializable
 
-class SimpleGuidePageFragment : Fragment() {
+open class SimpleGuidePageFragment : Fragment() {
 
     companion object {
 
-        private val ARG_IMG = "img"
-        private val ARG_TITLE = "title"
-        private val ARG_DSC = "dsc"
-        private val ARG_BTN_TEXT = "btn_text"
-        private val ARG_BTN_BG_COLOR = "btn_bg_color"
-        private val ARG_BTN_CLICK_LISTENER = "btn_click_listener"
+        private const val ARG_IMG = "img"
+        private const val ARG_TITLE = "title"
+        private const val ARG_DSC = "dsc"
+        private const val ARG_BTN_TEXT = "btn_text"
+        private const val ARG_BTN_BG_COLOR = "btn_bg_color"
+        private const val ARG_BTN_CLICK_LISTENER = "btn_click_listener"
 
         fun newInstance(
                 @DrawableRes imageResId: Int = 0,
@@ -45,58 +45,58 @@ class SimpleGuidePageFragment : Fragment() {
 
     private var initialized = false
 
-    var mImageResId = 0
+    var imageResId = 0
         set(value) {
             if (field == value) return
             field = value
             if (initialized) {
                 updateImage()
-                arguments.putInt(ARG_IMG, value)
+                arguments!!.putInt(ARG_IMG, value)
             }
         }
-    var mTitleText: CharSequence? = null
+    var titleText: CharSequence? = null
         set(value) {
             if (field == value) return
             field = value
             if (initialized) {
                 updateTitle()
-                arguments.putCharSequence(ARG_TITLE, value)
+                arguments!!.putCharSequence(ARG_TITLE, value)
             }
         }
-    var mDescriptionText: CharSequence? = null
+    var descriptionText: CharSequence? = null
         set(value) {
             if (field == value) return
             field = value
             if (initialized) {
                 updateDescription()
-                arguments.putCharSequence(ARG_DSC, value)
+                arguments!!.putCharSequence(ARG_DSC, value)
             }
         }
-    var mButtonText: CharSequence? = null
+    var buttonText: CharSequence? = null
         set(value) {
             if (field == value) return
             field = value
             if (initialized) {
                 updateButtonText()
-                arguments.putCharSequence(ARG_BTN_TEXT, value)
+                arguments!!.putCharSequence(ARG_BTN_TEXT, value)
             }
         }
-    var mButtonBackgroundColor = 0
+    var buttonBackgroundColor = 0
         set(value) {
             if (field == value) return
             field = value
             if (initialized) {
                 updateButtonBackgroundColor()
-                arguments.putInt(ARG_BTN_BG_COLOR, value)
+                arguments!!.putInt(ARG_BTN_BG_COLOR, value)
             }
         }
-    var mButtonClickListener: OnButtonClickListener? = null
+    var buttonClickListener: OnButtonClickListener? = null
         set(value) {
             if (field == value) return
             field = value
             if (initialized) {
                 updateButtonClickListener()
-                arguments.putSerializable(ARG_BTN_CLICK_LISTENER, value)
+                arguments!!.putSerializable(ARG_BTN_CLICK_LISTENER, value)
             }
         }
 
@@ -105,12 +105,12 @@ class SimpleGuidePageFragment : Fragment() {
 
         val args = arguments
         if (args != null) {
-            mImageResId = args.getInt(ARG_IMG)
-            mTitleText = args.getCharSequence(ARG_TITLE)
-            mDescriptionText = args.getCharSequence(ARG_DSC)
-            mButtonText = args.getCharSequence(ARG_BTN_TEXT)
-            mButtonBackgroundColor = args.getInt(ARG_BTN_BG_COLOR)
-            mButtonClickListener = args.getSerializable(ARG_BTN_CLICK_LISTENER) as OnButtonClickListener?
+            imageResId = args.getInt(ARG_IMG)
+            titleText = args.getCharSequence(ARG_TITLE)
+            descriptionText = args.getCharSequence(ARG_DSC)
+            buttonText = args.getCharSequence(ARG_BTN_TEXT)
+            buttonBackgroundColor = args.getInt(ARG_BTN_BG_COLOR)
+            buttonClickListener = args.getSerializable(ARG_BTN_CLICK_LISTENER) as OnButtonClickListener?
 
             initialized = true
         }
@@ -131,45 +131,45 @@ class SimpleGuidePageFragment : Fragment() {
     }
 
     private fun updateImage() {
-        if (mImageResId == 0) {
+        if (imageResId == 0) {
             vImage.visibility = View.INVISIBLE
         } else {
-            vImage.setImageResource(mImageResId)
+            vImage.setImageResource(imageResId)
         }
     }
 
     private fun updateTitle() {
-        if (mTitleText == null) {
+        if (titleText == null) {
             vTitleText.visibility = View.INVISIBLE
         } else {
-            vTitleText.text = mTitleText
+            vTitleText.text = titleText
         }
     }
 
     private fun updateDescription() {
-        if (mDescriptionText == null) {
+        if (descriptionText == null) {
             vDescriptionText.visibility = View.INVISIBLE
         } else {
-            vDescriptionText.text = mDescriptionText
+            vDescriptionText.text = descriptionText
         }
     }
 
     private fun updateButtonText() {
-        if (mButtonText == null) {
+        if (buttonText == null) {
             vButton.visibility = View.INVISIBLE
         } else {
-            vButton.text = mButtonText
+            vButton.text = buttonText
         }
     }
 
     private fun updateButtonBackgroundColor() {
-        if (mButtonText != null && mButtonBackgroundColor != 0) {
-            vButton.backgroundTintList = ColorStateList.valueOf(mButtonBackgroundColor)
+        if (buttonText != null && buttonBackgroundColor != 0) {
+            vButton.backgroundTintList = ColorStateList.valueOf(buttonBackgroundColor)
         }
     }
 
     private fun updateButtonClickListener() {
-        vButton.setOnClickListener(mButtonClickListener)
+        vButton.setOnClickListener(buttonClickListener)
     }
 
     interface OnButtonClickListener : View.OnClickListener, Serializable
