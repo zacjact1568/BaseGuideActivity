@@ -23,6 +23,7 @@ class GuideActivity : BaseGuideActivity() {
                     "Welcome",
                     "This is a description"
             ),
+            SpecialGuidePageFragment.newInstance(),
             SimpleGuidePageFragment.newInstance(
                     R.mipmap.ic_launcher_round,
                     "Enjoy",

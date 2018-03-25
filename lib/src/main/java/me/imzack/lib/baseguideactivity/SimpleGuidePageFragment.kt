@@ -131,35 +131,25 @@ open class SimpleGuidePageFragment : Fragment() {
     }
 
     private fun updateImage() {
-        if (imageResId == 0) {
-            vImage.visibility = View.INVISIBLE
-        } else {
-            vImage.setImageResource(imageResId)
-        }
+        // 若 imageResId 为 0，不会刷新
+        vImage.setImageResource(imageResId)
+        updateVisibility(vImage, imageResId != 0)
     }
 
     private fun updateTitle() {
-        if (titleText == null) {
-            vTitleText.visibility = View.INVISIBLE
-        } else {
-            vTitleText.text = titleText
-        }
+        // 若 titleText 为 null，会被置为空字符串
+        vTitleText.text = titleText
+        updateVisibility(vTitleText, titleText != null)
     }
 
     private fun updateDescription() {
-        if (descriptionText == null) {
-            vDescriptionText.visibility = View.INVISIBLE
-        } else {
-            vDescriptionText.text = descriptionText
-        }
+        vDescriptionText.text = descriptionText
+        updateVisibility(vDescriptionText, descriptionText != null)
     }
 
     private fun updateButtonText() {
-        if (buttonText == null) {
-            vButton.visibility = View.INVISIBLE
-        } else {
-            vButton.text = buttonText
-        }
+        vButton.text = buttonText
+        updateVisibility(vButton, buttonText != null)
     }
 
     private fun updateButtonBackgroundColor() {
@@ -170,6 +160,10 @@ open class SimpleGuidePageFragment : Fragment() {
 
     private fun updateButtonClickListener() {
         vButton.setOnClickListener(buttonClickListener)
+    }
+
+    private fun updateVisibility(view: View, isVisible: Boolean) {
+        view.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
     }
 
     interface OnButtonClickListener : View.OnClickListener, Serializable
