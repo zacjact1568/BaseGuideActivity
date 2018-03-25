@@ -19,13 +19,15 @@ class GuideActivity : BaseGuideActivity() {
 
     override fun provideFragmentList() = listOf(
             SimpleGuidePageFragment.newInstance(
-                    R.mipmap.ic_launcher,
+                    R.drawable.ic_android_black_24dp,
+                    Color.MAGENTA,
                     "Welcome",
                     "This is a description"
             ),
             SpecialGuidePageFragment.newInstance(),
             SimpleGuidePageFragment.newInstance(
-                    R.mipmap.ic_launcher_round,
+                    R.drawable.ic_android_black_24dp,
+                    Color.GREEN,
                     "Enjoy",
                     "Agree following licence to continue",
                     "Agree",

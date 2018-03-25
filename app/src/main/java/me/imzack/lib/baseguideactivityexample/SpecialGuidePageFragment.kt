@@ -18,6 +18,6 @@ class SpecialGuidePageFragment : SimpleGuidePageFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        imageResId = R.mipmap.ic_launcher_round
+        imageResId = R.mipmap.ic_launcher
     }
 }

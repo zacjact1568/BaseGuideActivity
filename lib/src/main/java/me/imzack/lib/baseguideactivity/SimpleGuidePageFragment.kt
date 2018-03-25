@@ -16,6 +16,7 @@ open class SimpleGuidePageFragment : Fragment() {
     companion object {
 
         private const val ARG_IMG = "img"
+        private const val ARG_IMG_TINT = "img_tint"
         private const val ARG_TITLE = "title"
         private const val ARG_DSC = "dsc"
         private const val ARG_BTN_TEXT = "btn_text"
@@ -24,6 +25,7 @@ open class SimpleGuidePageFragment : Fragment() {
 
         fun newInstance(
                 @DrawableRes imageResId: Int = 0,
+                @ColorInt imageTint: Int = 0,
                 titleText: CharSequence? = null,
                 descriptionText: CharSequence? = null,
                 buttonText: CharSequence? = null,
@@ -33,6 +35,7 @@ open class SimpleGuidePageFragment : Fragment() {
             val fragment = SimpleGuidePageFragment()
             val args = Bundle()
             args.putInt(ARG_IMG, imageResId)
+            args.putInt(ARG_IMG_TINT, imageTint)
             args.putCharSequence(ARG_TITLE, titleText)
             args.putCharSequence(ARG_DSC, descriptionText)
             args.putCharSequence(ARG_BTN_TEXT, buttonText)
@@ -52,6 +55,15 @@ open class SimpleGuidePageFragment : Fragment() {
             if (initialized) {
                 updateImage()
                 arguments!!.putInt(ARG_IMG, value)
+            }
+        }
+    var imageTint = 0
+        set(value) {
+            if (field == value) return
+            field = value
+            if (initialized) {
+                updateImageTint()
+                arguments!!.putInt(ARG_IMG_TINT, value)
             }
         }
     var titleText: CharSequence? = null
@@ -106,6 +118,7 @@ open class SimpleGuidePageFragment : Fragment() {
         val args = arguments
         if (args != null) {
             imageResId = args.getInt(ARG_IMG)
+            imageTint = args.getInt(ARG_IMG_TINT)
             titleText = args.getCharSequence(ARG_TITLE)
             descriptionText = args.getCharSequence(ARG_DSC)
             buttonText = args.getCharSequence(ARG_BTN_TEXT)
@@ -123,6 +136,7 @@ open class SimpleGuidePageFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         updateImage()
+        updateImageTint()
         updateTitle()
         updateDescription()
         updateButtonText()
@@ -134,6 +148,12 @@ open class SimpleGuidePageFragment : Fragment() {
         // 若 imageResId 为 0，不会刷新
         vImage.setImageResource(imageResId)
         updateVisibility(vImage, imageResId != 0)
+    }
+
+    private fun updateImageTint() {
+        if (imageResId != 0 && imageTint != 0) {
+            vImage.imageTintList = ColorStateList.valueOf(imageTint)
+        }
     }
 
     private fun updateTitle() {
