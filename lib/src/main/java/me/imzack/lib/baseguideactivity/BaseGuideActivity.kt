@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.activity_base_guide.*
 abstract class BaseGuideActivity : AppCompatActivity() {
 
     // 不能直接初始化，会有警告
-    private val guidePagerAdapter by lazy { GuidePagerAdapter(supportFragmentManager, provideFragmentList()) }
+    private val guidePagerAdapter by lazy { GuideFragmentPagerAdapter(supportFragmentManager, getPageFragmentList()) }
 
     private var lastBackKeyPressedTime = 0L
 
@@ -19,9 +19,8 @@ abstract class BaseGuideActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_base_guide)
 
-        vGuidePager.adapter = guidePagerAdapter
-        vGuidePager.scrollingEnabled = false
-        vGuidePager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+        vPager.adapter = guidePagerAdapter
+        vPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
 
             }
@@ -36,17 +35,17 @@ abstract class BaseGuideActivity : AppCompatActivity() {
         })
 
         vStartButton.setOnClickListener {
-            val currentPage = vGuidePager.currentItem
+            val currentPage = vPager.currentItem
             if (currentPage != 0) {
-                vGuidePager.currentItem = currentPage - 1
+                vPager.currentItem = currentPage - 1
             }
         }
 
         vEndButton.setOnClickListener {
-            val currentPage = vGuidePager.currentItem
+            val currentPage = vPager.currentItem
             if (currentPage != guidePagerAdapter.count - 1) {
                 //不是最后一页
-                vGuidePager.currentItem = currentPage + 1
+                vPager.currentItem = currentPage + 1
             } else {
                 //最后一页
                 onLastPageTurned()
@@ -66,8 +65,8 @@ abstract class BaseGuideActivity : AppCompatActivity() {
         }
     }
 
-    /** 必须重写此函数提供引导页列表 */
-    abstract fun provideFragmentList(): List<Fragment>
+    /** 重写此函数提供引导页 Fragment 列表 */
+    abstract fun getPageFragmentList(): List<Fragment>
 
     /** 触摸一次后退键执行的函数，默认结束引导 */
     open fun onBackPressedOnce() {
@@ -98,6 +97,11 @@ abstract class BaseGuideActivity : AppCompatActivity() {
     fun setEndButtonColor(color: Int) {
         vEndButton.setFillColor(color)
     }
+
+    /** 获取引导页 Fragment 的 tag */
+    // Fragment 的 tag 写死在了 FragmentPagerAdapter 中
+    // 其中，获取 vPager 的 id 不能使用 vPager.id，因为在重建 activity 过程中，vPager 会为 null，因此直接使用常量 R.id.vPager
+    fun getPageFragmentTag(position: Int) = "android:switcher:${R.id.vPager}:$position"
 
     private fun onPageSelected(isFirstPage: Boolean, isLastPage: Boolean) {
         vStartButton.visibility = if (isFirstPage) View.GONE else View.VISIBLE
