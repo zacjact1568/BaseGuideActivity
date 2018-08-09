@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.v7.widget.LinearLayoutCompat
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,14 +10,14 @@
     tools:background="@android:color/holo_blue_light"
     tools:context=".SimpleGuidePageFragment">
 
-    <ImageView
+    <android.support.v7.widget.AppCompatImageView
         android:id="@+id/vImage"
         android:layout_width="160dp"
         android:layout_height="160dp"
         tools:src="@drawable/ic_check_black_24dp"
         tools:tint="@android:color/white"/>
 
-    <TextView
+    <android.support.v7.widget.AppCompatTextView
         android:id="@+id/vTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
         tools:text="Welcome"
         tools:textColor="@android:color/white"/>
 
-    <TextView
+    <android.support.v7.widget.AppCompatTextView
         android:id="@+id/vDescriptionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,7 +39,7 @@
         tools:text="Will you be my witness?"
         tools:textColor="@android:color/white"/>
 
-    <Button
+    <android.support.design.button.MaterialButton
         android:id="@+id/vButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -48,4 +48,4 @@
         tools:textColor="@android:color/white"
         tools:backgroundTint="@android:color/holo_green_light"/>
 
-</LinearLayout>
+</android.support.v7.widget.LinearLayoutCompat>

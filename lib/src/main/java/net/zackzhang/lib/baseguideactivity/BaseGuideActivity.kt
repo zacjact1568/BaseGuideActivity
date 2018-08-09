@@ -90,12 +90,12 @@ abstract class BaseGuideActivity : AppCompatActivity() {
 
     /** 改变左边按钮的背景颜色，默认黑色 */
     fun setStartButtonColor(color: Int) {
-        vStartButton.setFillColor(color)
+        vStartButton.fillColor = color
     }
 
     /** 改变右边按钮的背景颜色，默认黑色 */
     fun setEndButtonColor(color: Int) {
-        vEndButton.setFillColor(color)
+        vEndButton.fillColor = color
     }
 
     /** 获取引导页 Fragment 的 tag */
@@ -106,6 +106,6 @@ abstract class BaseGuideActivity : AppCompatActivity() {
     private fun onPageSelected(isFirstPage: Boolean, isLastPage: Boolean) {
         vStartButton.visibility = if (isFirstPage) View.GONE else View.VISIBLE
         vEndButton.visibility = if (isFirstPage && isLastPage) View.GONE else View.VISIBLE
-        vEndButton.setInnerIcon(getDrawable(if (isLastPage) R.drawable.ic_check_black_24dp else R.drawable.ic_arrow_forward_black_24dp))
+        vEndButton.innerIcon = getDrawable(if (isLastPage) R.drawable.ic_check_black_24dp else R.drawable.ic_arrow_forward_black_24dp)
     }
 }
