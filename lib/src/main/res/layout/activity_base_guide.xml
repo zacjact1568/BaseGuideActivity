@@ -9,12 +9,12 @@
     tools:background="@android:color/holo_blue_light"
     tools:context=".BaseGuideActivity">
 
-    <me.imzack.lib.baseguideactivity.GuideViewPager
+    <net.zackzhang.lib.baseguideactivity.GuideViewPager
         android:id="@+id/vPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <me.imzack.lib.circlecolorview.CircleColorView
+    <net.zackzhang.lib.circlecolorview.CircleColorView
         android:id="@+id/vStartButton"
         android:layout_width="56dp"
         android:layout_height="56dp"
@@ -26,7 +26,7 @@
         android:focusable="true"
         app:innerIcon="@drawable/ic_arrow_back_black_24dp"/>
 
-    <me.imzack.lib.circlecolorview.CircleColorView
+    <net.zackzhang.lib.circlecolorview.CircleColorView
         android:id="@+id/vEndButton"
         android:layout_width="56dp"
         android:layout_height="56dp"
