@@ -7,15 +7,6 @@ import net.zackzhang.lib.baseguideactivity.SimpleGuidePageFragment
 
 class SpecialGuidePageFragment : SimpleGuidePageFragment() {
 
-    companion object {
-
-        fun newInstance(): SpecialGuidePageFragment {
-            val fragment = SpecialGuidePageFragment()
-            fragment.arguments = Bundle()
-            return fragment
-        }
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

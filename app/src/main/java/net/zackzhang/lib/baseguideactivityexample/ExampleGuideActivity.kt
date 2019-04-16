@@ -32,7 +32,7 @@ class ExampleGuideActivity : BaseGuideActivity() {
                     .setTitle("Welcome")
                     .setDescription("This is a description")
                     .build(),
-            SpecialGuidePageFragment.newInstance(),
+            SpecialGuidePageFragment(),
             SimpleGuidePageFragment.Builder()
                     .setImage(R.drawable.ic_android_black_24dp, Color.GREEN)
                     .setTitle("Enjoy")

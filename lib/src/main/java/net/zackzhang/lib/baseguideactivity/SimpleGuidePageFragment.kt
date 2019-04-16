@@ -2,6 +2,7 @@ package net.zackzhang.lib.baseguideactivity
 
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.support.annotation.CallSuper
 import android.support.annotation.ColorInt
 import android.support.annotation.DrawableRes
 import android.support.v4.app.Fragment
@@ -20,6 +21,12 @@ open class SimpleGuidePageFragment : Fragment() {
         private const val ARG_DESCRIPTION = "description"
         private const val ARG_BUTTON_TEXT = "button_text"
         private const val ARG_BUTTON_BACKGROUND_COLOR = "button_background_color"
+    }
+
+    init {
+        // 因为需要保证 Fragment 重建后关键参数能恢复，所以要求 arguments 始终存在
+        // 这样通过 Builder 或继承该类创建的类都有 arguments
+        arguments = Bundle()
     }
 
     private var initialized = false
@@ -151,7 +158,10 @@ open class SimpleGuidePageFragment : Fragment() {
 
     class Builder {
 
-        private val args = Bundle()
+        private val fragment = SimpleGuidePageFragment()
+
+        // fragment 的 arguments 在构造函数中已创建，肯定不为空
+        private val args = fragment.arguments!!
 
         fun setImage(@DrawableRes resId: Int, @ColorInt tint: Int = 0): Builder {
             args.putInt(ARG_IMAGE, resId)
@@ -175,10 +185,6 @@ open class SimpleGuidePageFragment : Fragment() {
             return this
         }
 
-        fun build(): SimpleGuidePageFragment {
-            val fragment = SimpleGuidePageFragment()
-            fragment.arguments = args
-            return fragment
-        }
+        fun build() = fragment
     }
 }
